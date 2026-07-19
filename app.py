@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Load the trained model and scaler
+# Load model and scaler
 model = joblib.load("models/loan_model.pkl")
 scaler = joblib.load("models/scaler.pkl")
 
@@ -13,11 +13,11 @@ st.set_page_config(
     layout="wide"
 )
 
-# Header
+# Title
 st.title("🏦 CreditWise Loan Approval Prediction")
-st.write("Enter applicant details to predict whether the loan will be approved.")
+st.write("Enter applicant details to check the chances of loan approval.")
 
-# Input form
+# Input fields
 col1, col2 = st.columns(2)
 
 with col1:
@@ -53,7 +53,6 @@ employer = st.selectbox(
     ["Government", "MNC", "Private", "Unemployed"]
 )
 
-# Predict button
 # Predict button
 if st.button("🔍 Predict Loan Approval"):
 
@@ -96,27 +95,6 @@ if st.button("🔍 Predict Loan Approval"):
     # Reorder columns to match scaler training data exactly
     input_data = input_data.reindex(columns=scaler.feature_names_in_, fill_value=0)
 
-    # Scale input data
-    scaled_input = scaler.transform(input_data)
-
-    # Make prediction
-    prediction = model.predict(scaled_input)[0]
-    probability = model.predict_proba(scaled_input)[0][1]
-
-    # Display result
-    st.subheader("Prediction Result")
-
-    if prediction == 1:
-        st.success("✅ Loan Approved")
-    else:
-        st.error("❌ Loan Not Approved")
-
-    st.progress(int(probability * 100))
-    st.metric("Approval Probability", f"{probability * 100:.2f}%")
-
-    # Show input summary
-    st.subheader("Applicant Summary")
-    st.dataframe(input_data.T.rename(columns={0: "Value"}), use_container_width=True)
     # Scale input data
     scaled_input = scaler.transform(input_data)
 
