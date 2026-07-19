@@ -1,6 +1,12 @@
 # CreditWise - Loan Approval Prediction System
 
-An end-to-end Machine Learning Classification project that predicts whether a loan application should be approved based on an applicant's demographic and financial information.
+An end-to-end Machine Learning project that predicts whether a loan application should be approved based on an applicant's demographic and financial information. The project includes data preprocessing, exploratory data analysis, feature engineering, model training, and deployment using Streamlit.
+
+---
+
+## Live Demo
+
+🔗 **Try the app here:** https://your-streamlit-app-link.streamlit.app
 
 ---
 
@@ -8,32 +14,36 @@ An end-to-end Machine Learning Classification project that predicts whether a lo
 
 The objective of this project is to build a predictive machine learning model that assists financial institutions in determining loan approval eligibility.
 
-The project follows the complete machine learning pipeline from data preprocessing to model evaluation.
+The project follows the complete machine learning pipeline from data preprocessing to model deployment, providing an interactive web application where users can enter applicant details and receive instant loan approval predictions.
 
 ---
 
 ## Features
 
-- Data Cleaning
-- Missing Value Handling
-- Exploratory Data Analysis (EDA)
-- Feature Engineering
-- Feature Encoding
-- Feature Scaling
-- Multiple Machine Learning Models
-- Model Evaluation
+* Data Cleaning
+* Missing Value Handling
+* Exploratory Data Analysis (EDA)
+* Feature Engineering
+* Feature Encoding
+* Feature Scaling
+* Multiple Machine Learning Models
+* Model Evaluation
+* Interactive Streamlit Web Application
+* Real-time Loan Approval Prediction
 
 ---
 
 ## Technologies Used
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Jupyter Notebook
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* Streamlit
+* Joblib
+* Jupyter Notebook
 
 ---
 
@@ -49,75 +59,84 @@ The project follows the complete machine learning pipeline from data preprocessi
 8. Train-Test Split
 9. Model Training
 10. Model Evaluation
+11. Streamlit Deployment
 
 ---
 
 ## Models Used
 
-- Logistic Regression
-- K-Nearest Neighbors (KNN)
-- Gaussian Naive Bayes
+* Logistic Regression
+* K-Nearest Neighbors (KNN)
+* Gaussian Naive Bayes
 
 ---
 
-## Evaluation Metrics
+## Best Model Performance
 
-The models were evaluated using:
+The **Logistic Regression** model achieved the best performance after feature engineering:
 
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- Confusion Matrix
+* **Accuracy:** 87.5%
+* **Precision:** 79.03%
+* **Recall:** 80.33%
+* **F1 Score:** 79.67%
 
 ---
 
 ## Project Structure
 
-```
-CreditWise-Loan-Approval-System
+```text
+CreditWise-Loan-Approval-System/
 │
-├── data/
-├── notebooks/
-├── images/
-├── models/
-├── README.md
+├── app.py
 ├── requirements.txt
-├── .gitignore
-└── LICENSE
+├── README.md
+├── loan_approval_data.csv
+├── credit_wise.ipynb
+│
+├── models/
+│   ├── loan_model.pkl
+│   └── scaler.pkl
 ```
 
 ---
 
-## How to Run
+## How to Run Locally
 
-Clone the repository
+### Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/CreditWise-Loan-Approval-System.git
+git clone https://github.com/your-username/CreditWise-Loan-Approval-System.git
+cd CreditWise-Loan-Approval-System
 ```
 
-Install dependencies
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Open the notebook
+### Run the Streamlit app
 
 ```bash
-jupyter notebook
+streamlit run app.py
+```
+
+The app will open in your browser at:
+
+```text
+http://localhost:8501
 ```
 
 ---
 
 ## Future Improvements
 
-- Hyperparameter Tuning
-- Streamlit Web Application
-- Random Forest and XGBoost Models
-- Model Deployment
-- Explainable AI (SHAP)
+* Hyperparameter Tuning
+* Random Forest and XGBoost Models
+* Explainable AI (SHAP)
+* User Authentication
+* Database Integration
+* Cloud Deployment Enhancements
 
 ---
 
@@ -127,4 +146,5 @@ jupyter notebook
 
 Aspiring Data Scientist
 
-GitHub: https://github.com/Maahichaurasiya
+* **GitHub:** https://github.com/Maahichaurasiya
+* **LinkedIn:** https://www.linkedin.com/in/maahichaurasiya-datascience/
