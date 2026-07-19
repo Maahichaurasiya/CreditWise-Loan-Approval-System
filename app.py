@@ -54,67 +54,69 @@ employer = st.selectbox(
 )
 
 # Predict button
+# Predict button
 if st.button("🔍 Predict Loan Approval"):
 
-    # Create input data with exact feature order
-    input_data = pd.DataFrame([[
-        applicant_income,
-        coapplicant_income,
-        age,
-        dependents,
-        credit_score,
-        existing_loans,
-        dti_ratio,
-        savings,
-        collateral_value,
-        loan_amount,
-        loan_term,
-        1 if education == "Not Graduate" else 0,
-        1 if employment == "Salaried" else 0,
-        1 if employment == "Self-employed" else 0,
-        1 if employment == "Unemployed" else 0,
-        1 if marital == "Single" else 0,
-        1 if purpose == "Car" else 0,
-        1 if purpose == "Education" else 0,
-        1 if purpose == "Home" else 0,
-        1 if purpose == "Personal" else 0,
-        1 if property_area == "Semiurban" else 0,
-        1 if property_area == "Urban" else 0,
-        1 if gender == "Male" else 0,
-        1 if employer == "Government" else 0,
-        1 if employer == "MNC" else 0,
-        1 if employer == "Private" else 0,
-        1 if employer == "Unemployed" else 0
-    ]], columns=[
-        "Applicant_Income",
-        "Coapplicant_Income",
-        "Age",
-        "Dependents",
-        "Credit_Score",
-        "Existing_Loans",
-        "DTI_Ratio",
-        "Savings",
-        "Collateral_Value",
-        "Loan_Amount",
-        "Loan_Term",
-        "Education_Level",
-        "Employment_Status_Salaried",
-        "Employment_Status_Self-employed",
-        "Employment_Status_Unemployed",
-        "Marital_Status_Single",
-        "Loan_Purpose_Car",
-        "Loan_Purpose_Education",
-        "Loan_Purpose_Home",
-        "Loan_Purpose_Personal",
-        "Property_Area_Semiurban",
-        "Property_Area_Urban",
-        "Gender_Male",
-        "Employer_Category_Government",
-        "Employer_Category_MNC",
-        "Employer_Category_Private",
-        "Employer_Category_Unemployed"
-    ])
+    # Create input data dictionary
+    input_dict = {
+        "Applicant_Income": applicant_income,
+        "Coapplicant_Income": coapplicant_income,
+        "Age": age,
+        "Dependents": dependents,
+        "Credit_Score": credit_score,
+        "Existing_Loans": existing_loans,
+        "DTI_Ratio": dti_ratio,
+        "Savings": savings,
+        "Collateral_Value": collateral_value,
+        "Loan_Amount": loan_amount,
+        "Loan_Term": loan_term,
+        "Education_Level": 1 if education == "Not Graduate" else 0,
 
+        # One-hot encoded features
+        "Employment_Status_Salaried": 1 if employment == "Salaried" else 0,
+        "Employment_Status_Self-employed": 1 if employment == "Self-employed" else 0,
+        "Employment_Status_Unemployed": 1 if employment == "Unemployed" else 0,
+        "Marital_Status_Single": 1 if marital == "Single" else 0,
+        "Loan_Purpose_Car": 1 if purpose == "Car" else 0,
+        "Loan_Purpose_Education": 1 if purpose == "Education" else 0,
+        "Loan_Purpose_Home": 1 if purpose == "Home" else 0,
+        "Loan_Purpose_Personal": 1 if purpose == "Personal" else 0,
+        "Property_Area_Semiurban": 1 if property_area == "Semiurban" else 0,
+        "Property_Area_Urban": 1 if property_area == "Urban" else 0,
+        "Gender_Male": 1 if gender == "Male" else 0,
+        "Employer_Category_Government": 1 if employer == "Government" else 0,
+        "Employer_Category_MNC": 1 if employer == "MNC" else 0,
+        "Employer_Category_Private": 1 if employer == "Private" else 0,
+        "Employer_Category_Unemployed": 1 if employer == "Unemployed" else 0
+    }
+
+    # Create DataFrame
+    input_data = pd.DataFrame([input_dict])
+
+    # Reorder columns to match scaler training data exactly
+    input_data = input_data.reindex(columns=scaler.feature_names_in_, fill_value=0)
+
+    # Scale input data
+    scaled_input = scaler.transform(input_data)
+
+    # Make prediction
+    prediction = model.predict(scaled_input)[0]
+    probability = model.predict_proba(scaled_input)[0][1]
+
+    # Display result
+    st.subheader("Prediction Result")
+
+    if prediction == 1:
+        st.success("✅ Loan Approved")
+    else:
+        st.error("❌ Loan Not Approved")
+
+    st.progress(int(probability * 100))
+    st.metric("Approval Probability", f"{probability * 100:.2f}%")
+
+    # Show input summary
+    st.subheader("Applicant Summary")
+    st.dataframe(input_data.T.rename(columns={0: "Value"}), use_container_width=True)
     # Scale input data
     scaled_input = scaler.transform(input_data)
 
