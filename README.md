@@ -6,7 +6,7 @@ An end-to-end Machine Learning project that predicts whether a loan application 
 
 ## Live Demo
 
-🔗 **Try the app here:** https://your-streamlit-app-link.streamlit.app
+🔗 **Try the app here:** https://maahi-creditwise-loan.streamlit.app/
 
 ---
 
@@ -105,7 +105,7 @@ CreditWise-Loan-Approval-System/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/CreditWise-Loan-Approval-System.git
+git clone https://github.com/Maahichaurasiya/CreditWise-Loan-Approval-System.git
 cd CreditWise-Loan-Approval-System
 ```
 
