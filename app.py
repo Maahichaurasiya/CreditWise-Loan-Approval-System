@@ -73,23 +73,16 @@ lottie_json = load_lottieurl(lottie_url)
 
 # 4. Model & Scaler Loading (Using your paths)
 @st.cache_resource
-def load_model():
+def load_ml_assets():
     try:
-        with open("models/loan_model.pkl", "rb") as file:
-            return pickle.load(file)
-    except FileNotFoundError:
-        return None
+        model = joblib.load("models/loan_model.pkl")
+        scaler = joblib.load("models/scaler.pkl")
+        return model, scaler
+    except Exception as e:
+        st.error(f"⚠️ Model or Scaler load failure from 'models/' folder: {e}")
+        return None, None
 
-@st.cache_resource
-def load_scaler():
-    try:
-        with open("models/scaler.pkl", "rb") as file:
-            return pickle.load(file)
-    except FileNotFoundError:
-        return None
-
-model = load_model()
-scaler = load_scaler()
+model, scaler = load_ml_assets()
 
 # 5. Dashboard Hero Header
 col_header, col_hero_anim = st.columns([2, 1])
