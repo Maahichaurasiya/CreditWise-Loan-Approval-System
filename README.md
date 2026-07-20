@@ -8,9 +8,7 @@ An end-to-end Machine Learning project that predicts whether a loan application 
 
 ## Live Demo
 
-🚀 **Try the app here:** [https://maahi-creditwise-loan.streamlit.app/](https://maahi-creditwise-loan.streamlit.app/)
-
-🎬 **Watch the Dashboard Demo Video:** [Click here to watch the demo video](./demo.mp4)
+🚀 **Try the app here:** [https://maahi-creditwise-loan.streamlit.app/](https://maahi-creditwise-loan.streamlit.app/
 
 ---
 
