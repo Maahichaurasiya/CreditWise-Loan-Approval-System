@@ -4,9 +4,7 @@ An end-to-end Machine Learning project that predicts whether a loan application 
 
 ---
 
-## Live Demo
-
-## Live Demo
+## Live Demo 
 
 🚀 **Try the app here:** [https://maahi-creditwise-loan.streamlit.app/](https://maahi-creditwise-loan.streamlit.app/
 
